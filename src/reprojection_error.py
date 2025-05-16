@@ -5,7 +5,7 @@ from utils import print_table
 
 LEFT, RIGHT = "results/undistorted_scene_left.png", "results/undistorted_scene_right.png"
 K           = np.load("calib/K.npy")
-BASELINE    = 0.10
+BASELINE    = 0.15
 
 DETECTORS = {
     "SIFT": (cv2.SIFT_create(),    cv2.NORM_L2),

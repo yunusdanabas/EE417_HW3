@@ -5,7 +5,7 @@ from utils import print_table
 
 LEFT, RIGHT = "results/undistorted_scene_left.png", "results/undistorted_scene_right.png"
 K           = np.load("calib/K.npy")
-BASELINE    = 0.10          # same meter shift you used in triangulate.py
+BASELINE    = 0.15          # same meter shift you used in triangulate.py
 
 DETECTORS = {
     "SIFT": (cv2.SIFT_create(),    cv2.NORM_L2),

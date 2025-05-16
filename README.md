@@ -105,7 +105,7 @@ The main entry point is `src/main.py`, which runs the entire pipeline in sequenc
 1. Place your calibration images in `calib/` and stereo images in `images/`.
 2. Run the pipeline:
    ```bash
-   python3 src/main.py --detector SIFT
+   python src/main.py --detector SIFT
    ```
    - Use `--detector ORB` to switch to ORB features.
 
@@ -117,11 +117,75 @@ The main entry point is `src/main.py`, which runs the entire pipeline in sequenc
 - OpenCV
 - NumPy
 - Matplotlib
+- Plotly
 
 Install dependencies with:
 ```bash
-pip install opencv-python numpy matplotlib
+pip install opencv-python numpy matplotlib plotly
 ```
+
+---
+
+## Output Files
+
+The pipeline generates several output files in the `results/` directory:
+
+1. **Calibration Results:**
+   - `calib_preview.png`: Visualization of checkerboard detection
+   - `K.npy`: Camera intrinsic matrix
+   - `dist.npy`: Distortion coefficients
+
+2. **Image Processing:**
+   - `undistorted_scene_left.png`: Undistorted left image
+   - `undistorted_scene_right.png`: Undistorted right image
+
+3. **Feature Matching:**
+   - `feature_matches.png`: Visualization of matched keypoints
+   - `epipolar_lines.png`: Visualization of epipolar lines
+
+4. **3D Reconstruction:**
+   - `pointcloud.xyz`: Raw 3D point cloud data
+   - `pointcloud.ply`: Colored point cloud in PLY format (can be opened in MeshLab, CloudCompare, etc.)
+   - `pointcloud.png`: Static 3D visualization
+   - `interactive_pointcloud.html`: Interactive 3D visualization (open in web browser)
+   - `reprojection_errors.png`: Distribution of reprojection errors
+
+---
+
+## Visualization Options
+
+The pipeline provides multiple ways to visualize the 3D reconstruction:
+
+1. **Static Visualization:**
+   - Basic 3D scatter plot saved as PNG
+   - Shows point cloud and camera poses
+   - Good for quick inspection
+
+2. **Interactive Visualization:**
+   - HTML-based interactive 3D visualization
+   - Features:
+     - Rotate, pan, and zoom
+     - Toggle visibility of point cloud and camera poses
+     - Color-coded camera coordinate frames
+     - Export to PNG
+   - Open `results/interactive_pointcloud.html` in a web browser
+
+3. **3D Point Cloud Viewers:**
+   - PLY format point cloud can be opened in:
+     - MeshLab (free, open-source)
+     - CloudCompare (free, open-source)
+     - Blender (free, open-source)
+     - Other 3D point cloud viewers
+   - Features:
+     - Full 3D navigation
+     - Point cloud filtering and processing
+     - Measurement tools
+     - Export to various formats
+
+4. **Error Analysis:**
+   - Reprojection error distribution plots
+   - Epipolar line visualization
+   - Feature match visualization
 
 ---
 
@@ -129,5 +193,13 @@ pip install opencv-python numpy matplotlib
 
 - All results and intermediate files are saved in the `results/` directory.
 - The code is modular; each script can be run independently for debugging or analysis.
+- For best results:
+  - Use high-quality calibration images with good checkerboard visibility
+  - Ensure stereo images have sufficient overlap and texture
+  - Adjust parameters in `triangulate.py` if needed:
+    - `RATIO`: Feature matching ratio test threshold
+    - `RANSAC_TH`: RANSAC threshold for fundamental matrix
+    - `REPROJ_TH`: Maximum allowed reprojection error
+    - `MAX_DEPTH` and `MIN_DEPTH`: Depth range limits
 
 
