@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# epipolar_error.py
+
 import cv2, numpy as np
 from utils import print_table
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# calibrate.py
+
 import glob, os
 import cv2, numpy as np
 

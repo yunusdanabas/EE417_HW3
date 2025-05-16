@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# reprojection_error.py
+
 import cv2
 import numpy as np
 from utils import print_table

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# compare_detectors.py
 import cv2
 import numpy as np
 from utils import print_table

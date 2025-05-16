@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# geom.py
+
 import cv2, numpy as np, os
 
 RATIO = 0.75

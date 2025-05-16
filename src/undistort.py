@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# undistort.py
+
 import os, cv2, numpy as np
 
 K    = np.load("calib/K.npy")
